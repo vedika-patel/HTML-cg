@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+           
+    
+  
+<table border="2">
+  
+  <tr>
+    <td rowspan="2" align="center"><b>Heading</b></td>
+    <td><b>Student</b></td>
+    <td colspan="3" align="center"><b>Details</b></td>
+    
+  </tr>
+  <tr>
+    <td align="center"><b>Id</b></td>
+    <td align="center"><b>name</b></td>
+    <td align="center"><b>Department</b></td>
+    <td align="center"><b>Roll number</b></td>
+  </tr>
+  <tr>
+    <td rowspan="4">Student list</td>
+    <td align="center">1</td>
+    <td>victor</td>
+    <td>Computer science</td>
+    <td>12345</td>
+  </tr>
+  <tr>
+    
+    <td align="center">2</td>
+    <td>Williams</td>
+    <td>Eletronice</td>
+    <td>23456</td>
+  </tr>
+  <tr>
+    
+    <td align="center">3</td>
+    <td>Harry</td>
+    <td> Eletronice</td>
+    <td>34567</td>
+  </tr>
+  <tr>
+    
+    <td align="center">4</td>
+    <td>Rick</td>
+    <td>Civil</td>
+    <td>45678</td>
+  </tr>
+  <table border="5">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Roll Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Victor</td>
+            <td>Computer Science</td>
+            <td>12345</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Williams</td>
+            <td>Electronics</td>
+            <td>23456</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Harry</td>
+            <td>Electronics</td>
+            <td>34567</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Rick</td>
+            <td>Civil</td>
+            <td>45678</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" align="center">Total Students: 4</td>
+        </tr>
+    </tfoot>
+  </table>
+  <ul type="disc">
+  <!-- ul: unordered list; type="disc": sets bullet style -->
+  <li>Python Workshop at Coding Gita</li> <!-- li: list item -->
+  <li>Data Science Program at SwamiNarayan University</li>
+  <li>JavaScript Bootcamp</li>
+</ul>
+<ol type="1" start="2">
+  <!-- ol: ordered list; type="1": numeric list; start="2": begins at 2 -->
+  <li>Introduction to Programming</li>
+  <li>Advanced Python at Coding Gita</li>
+  <li>AI Research at SwamiNarayan University</li>
+</ol>
+<ol type="I" start="3" reversed>
+  <li>Web Development Workshop</li>
+  <li>Machine Learning Seminar</li>
+  <li>Cloud Computing Training</li>
+</ol>
+<dl>
+  <dt>Python Workshop</dt>
+  <dd>A hands-on workshop on Python programming.</dd>
+  <dt>Data Science Program</dt>
+  <dd>An intensive program covering data analysis and machine learning.</dd>
+  <dt>JavaScript Bootcamp</dt>
+  <dd>A bootcamp focused on front-end and back-end JavaScript development.</dd>
+</dl>
+<ul type="circle">
+  <!-- ul: unordered list; circle bullets -->
+  <li>Coding Gita Courses
+    <ol type="a">
+      <!-- Nested ol: ordered sublist with lowercase letters -->
+      <li>Python Basics</li>
+      <li>Advanced JavaScript</li>
+    </ol>
+  </li>
+  <li>SwamiNarayan University Programs
+    <ul type="square">
+      <!-- Nested ul: unordered sublist with square bullets -->
+      <li>Data Science</li>
+      <li>AI Research</li>
+    </ul>
+  </li>
+</ul>
+<ul>
+<li>Web Development Workshop</li>
+<ol>
+  <li>Introduction to Web Development</li>
+  <ul type="circle">
+    <li>HTML & CSS Basics</li>
+    <li>JavaScript Fundamentals</li>
+  </ul>
+  <li>Advanced Web Development</li>
+</ol>
+  <li>Machine Learning Seminar</li>
+  <ol>
+    <li>Introduction to Machine Learning</li>
+    <li>Deep Learning Techniques</li>
+  </ol>
+  <li>Cloud Computing Training</li>
+  <ol>
+    <li>Cloud Fundamentals</li>
+    <li>Cloud Architecture</li>
+  </ol>
+</ul>
+<ul>
+  
+  <ol>
+    <li>franten</li>
+    <li>franten</li>
+  </ol>>
+  </ul>
+  <div style="background-color: rgb(206, 12, 12); padd
+  ing: 15px; background-color:;">
+  <h2>Welcome Box</h2>
+  <p>This<span style=color:yellow> whole section</span> is <span style="color:green;">inside one div.</p>
+</div>
+<iframe src="https://www.codinggita.com" width="100%" height="400" title="Example Website"></iframe>
+<iframe name="amazon"></iframe>
+<a href="amazon.com" traget="amazon">go to mesho</a>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9Ar3C4nKGFY?si=TMqHeBiw0kE4Opj7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe 
+  src="https://www.youtube.com/embed/VIDEO_ID"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+  allowfullscreen>
+</iframe>
+<p>In Python, the <code>len()</code> function returns the length of a string or list.</p>
+<pre>
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+</pre>
+</body>
+</html>
