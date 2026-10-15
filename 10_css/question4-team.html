@@ -1,0 +1,39 @@
+* { box-sizing: border-box; }
+body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 400px;
+  gap: 15px;
+  align-items: stretch;
+  margin: 0 auto;
+}
+.sidebar {
+  flex: 0 0 200px;
+  background: #ddd;
+}
+.main-content {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  background: #e8f0ff;
+}
+/* align-self: flex-start keeps this panel at the start of the cross axis. */
+.activity-panel {
+  flex: 0 1 250px;
+  min-width: 0;
+  align-self: flex-start;
+  background: #eee;
+}
+.dashboard > * { padding: 15px; }
+/* At 1000px, the center panel gets most of the remaining width.
+   At 700px, the center and activity panels shrink; the sidebar stays 200px.
+   If the viewport becomes very narrow, the media query stacks the panels. */
+@media (max-width: 720px) {
+  .dashboard { flex-wrap: wrap; }
+  .sidebar { flex-basis: 180px; }
+  .main-content { flex-basis: calc(100% - 195px); }
+  .activity-panel { flex: 1 1 100%; align-self: stretch; }
+}
