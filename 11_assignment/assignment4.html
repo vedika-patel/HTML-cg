@@ -1,0 +1,641 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Super Over</title>
+     <style>
+/* ==============================
+   RESET
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ==============================
+   PAGE
+============================== */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #07101b;
+}
+
+
+/* ==============================
+   GAME AREA
+============================== */
+
+.game {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(3, 15, 29, .90) 0%,
+            rgba(4, 22, 39, .72) 35%,
+            rgba(5, 18, 16, .65) 60%,
+            rgba(9, 34, 5, .92) 100%
+        );
+}
+
+
+/* Stadium lights / sky */
+
+.game::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 25%,
+            rgba(65, 112, 155, .35),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            180deg,
+            transparent 0 22%,
+            rgba(0, 0, 0, .35) 23% 25%,
+            transparent 26% 34%,
+            rgba(0, 0, 0, .45) 35% 38%,
+            transparent 39%
+        );
+}
+
+
+/* Stadium field */
+
+.game::after {
+    content: "";
+
+    position: absolute;
+
+    z-index: 0;
+
+    left: -15%;
+    right: -15%;
+
+    bottom: -40%;
+
+    height: 70%;
+
+    background:
+        radial-gradient(
+            ellipse at center top,
+            #385c12 0%,
+            #1e3b0a 42%,
+            #071b04 78%
+        );
+
+    border-radius: 50% 50% 0 0;
+}
+
+
+/* ==============================
+   LOGO
+============================== */
+
+.logo {
+    position: relative;
+
+    z-index: 5;
+
+    width: fit-content;
+
+    margin: 30px auto 0;
+
+    display: flex;
+    align-items: center;
+
+    color: white;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.7);
+}
+
+
+.logo-icon {
+    font-size: 37px;
+
+    transform:
+        rotate(-18deg);
+
+    margin-right: 5px;
+}
+
+
+.logo-text {
+    font-size: 25px;
+
+    line-height: .78;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    text-align: center;
+}
+
+
+.logo-text span {
+    letter-spacing: -1px;
+}
+
+
+/* ==============================
+   SCOREBOARD
+============================== */
+
+.scoreboard {
+    position: relative;
+
+    z-index: 3;
+
+    width: 70%;
+
+    max-width: 950px;
+
+    margin: 72px auto 0;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 70px;
+}
+
+
+/* ==============================
+   TEAM CARDS
+============================== */
+
+.team-card {
+    height: 340px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    padding-top: 42px;
+
+    color: white;
+
+    box-shadow:
+        inset 0 0 25px rgba(255,255,255,.08),
+        0 8px 20px rgba(0,0,0,.2);
+}
+
+
+/* India */
+
+.india {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(35, 124, 235, .92),
+            rgba(20, 90, 190, .88)
+        );
+}
+
+
+/* Pakistan */
+
+.pakistan {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(89, 205, 38, .95),
+            rgba(69, 170, 24, .92)
+        );
+}
+
+
+.team-card h1 {
+    font-size: 60px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    margin-bottom: 45px;
+
+    color: white;
+
+    text-shadow:
+        0 2px 3px rgba(0,0,0,.2);
+}
+
+
+/* ==============================
+   BALLS
+============================== */
+
+.balls {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+
+.balls span {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    color: #050505;
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,.15);
+}
+
+
+/* ==============================
+   SCORE
+============================== */
+
+.score {
+    margin-top: 32px;
+
+    color: white;
+
+    font-size: 43px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.2);
+}
+
+
+/* ==============================
+   CONTROLS
+============================== */
+
+.controls {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+
+    bottom: 55px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 50px;
+}
+
+
+.controls button {
+    width: 95px;
+    height: 95px;
+
+    border-radius: 22px;
+
+    border: 4px solid rgba(255,255,255,.85);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 50px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.35),
+        inset 0 0 8px rgba(255,255,255,.3);
+
+    transition:
+        transform .15s,
+        filter .15s;
+}
+
+
+.controls button:hover {
+    transform: translateY(-3px) scale(1.03);
+
+    filter: brightness(1.1);
+}
+
+
+.controls button:active {
+    transform: scale(.95);
+}
+
+
+/* Bat */
+
+.bat-button {
+    background:
+        linear-gradient(
+            135deg,
+            #ffbf24,
+            #ed8d0a
+        );
+}
+
+
+/* Reset */
+
+.reset-button {
+    background:
+        linear-gradient(
+            135deg,
+            #f31c21,
+            #d80009
+        );
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+
+    .scoreboard {
+        width: 85%;
+
+        gap: 30px;
+    }
+
+    .team-card {
+        height: 300px;
+    }
+
+    .team-card h1 {
+        font-size: 48px;
+
+        margin-bottom: 35px;
+    }
+
+    .balls {
+        gap: 6px;
+    }
+
+    .balls span {
+        width: 38px;
+        height: 38px;
+
+        font-size: 19px;
+    }
+
+    .score {
+        font-size: 37px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .logo {
+        margin-top: 20px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .logo-icon {
+        font-size: 28px;
+    }
+
+    .scoreboard {
+        width: 92%;
+
+        margin-top: 45px;
+
+        gap: 12px;
+    }
+
+    .team-card {
+        height: 245px;
+
+        padding-top: 30px;
+
+        border-radius: 13px;
+    }
+
+    .team-card h1 {
+        font-size: 37px;
+
+        margin-bottom: 28px;
+    }
+
+    .balls {
+        gap: 3px;
+    }
+
+    .balls span {
+        width: 29px;
+        height: 29px;
+
+        font-size: 14px;
+    }
+
+    .score {
+        margin-top: 25px;
+
+        font-size: 29px;
+    }
+
+    .controls {
+        bottom: 30px;
+
+        gap: 20px;
+    }
+
+    .controls button {
+        width: 68px;
+        height: 68px;
+
+        border-radius: 16px;
+
+        font-size: 35px;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .scoreboard {
+        grid-template-columns: 1fr;
+
+        width: 80%;
+
+        margin-top: 30px;
+
+        gap: 15px;
+    }
+
+    .team-card {
+        height: 190px;
+
+        padding-top: 20px;
+    }
+
+    .team-card h1 {
+        font-size: 32px;
+
+        margin-bottom: 20px;
+    }
+
+    .balls span {
+        width: 27px;
+        height: 27px;
+
+        font-size: 13px;
+    }
+
+    .score {
+        margin-top: 18px;
+
+        font-size: 25px;
+    }
+
+    .controls {
+        bottom: 15px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+    <div class="game">
+
+        <!-- Logo -->
+        <header class="logo">
+            <div class="logo-icon">🏏</div>
+
+            <div class="logo-text">
+                SUPER<br>
+                <span>OVER</span>
+            </div>
+        </header>
+
+
+        <!-- Scoreboard -->
+        <main class="scoreboard">
+
+            <!-- INDIA -->
+            <section class="team-card india">
+
+                <h1>IND</h1>
+
+                <div class="balls">
+                    <span>4</span>
+                    <span>3</span>
+                    <span>2</span>
+                    <span>6</span>
+                    <span>6</span>
+                    <span>6</span>
+                </div>
+
+                <div class="score">
+                    27/0
+                </div>
+
+            </section>
+
+
+            <!-- PAKISTAN -->
+            <section class="team-card pakistan">
+
+                <h1>PAK</h1>
+
+                <div class="balls">
+                    <span>2</span>
+                    <span>4</span>
+                    <span>0</span>
+                    <span>3</span>
+                    <span>1</span>
+                    <span>4</span>
+                </div>
+
+                <div class="score">
+                    14/0
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- Bottom buttons -->
+        <div class="controls">
+
+            <button class="bat-button" aria-label="Bat">
+                🏏
+            </button>
+
+            <button class="reset-button" aria-label="Reset">
+                ↻
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+```

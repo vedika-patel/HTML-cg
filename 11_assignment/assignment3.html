@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo Board</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* =====================================
+   MAIN BOARD
+===================================== */
+
+.ludo-board {
+    position: relative;
+
+    width: min(830px, 95vw);
+    aspect-ratio: 1 / 1;
+
+    display: grid;
+
+    grid-template-columns:
+        40% 20% 40%;
+
+    grid-template-rows:
+        40% 20% 40%;
+
+    overflow: hidden;
+
+    border: 2px solid #222;
+}
+
+
+/* =====================================
+   HOME AREAS
+===================================== */
+
+.home {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* RED */
+
+.red-home {
+    background: #ef2b20;
+
+    grid-column: 1;
+    grid-row: 1;
+}
+
+
+/* GREEN */
+
+.green-home {
+    background: #318020;
+
+    grid-column: 3;
+    grid-row: 1;
+}
+
+
+/* BLUE */
+
+.blue-home {
+    background: #101ce8;
+
+    grid-column: 1;
+    grid-row: 3;
+}
+
+
+/* YELLOW */
+
+.yellow-home {
+    background: #ffff42;
+
+    grid-column: 3;
+    grid-row: 3;
+}
+
+
+/* =====================================
+   INNER HOME BOX
+===================================== */
+
+.home-box {
+    width: 59%;
+    aspect-ratio: 1 / 1;
+
+    background: white;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    gap: 28%;
+
+    padding: 12%;
+
+    align-items: center;
+    justify-items: center;
+}
+
+
+/* =====================================
+   PLAYER PIECES
+===================================== */
+
+.piece {
+    width: 50px;
+    max-width: 100%;
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    background: white;
+
+    border: 7px solid;
+}
+
+
+.red-piece {
+    border-color: #ef3327;
+}
+
+.green-piece {
+    border-color: #348326;
+}
+
+.blue-piece {
+    border-color: #1625df;
+}
+
+.yellow-piece {
+    border-color: #fff93c;
+}
+
+
+/* =====================================
+   TRACKS
+===================================== */
+
+.track {
+    position: relative;
+
+    display: grid;
+
+    background: white;
+
+    z-index: 3;
+}
+
+
+/* Each track square */
+
+.track > div {
+    border: 1px solid #111;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+/* =====================================
+   TOP TRACK
+===================================== */
+
+.top-track {
+    grid-column: 2;
+    grid-row: 1;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+
+/* Green lane */
+
+.green-track {
+    background: #318020 !important;
+}
+
+
+/* =====================================
+   BOTTOM TRACK
+===================================== */
+
+.bottom-track {
+    grid-column: 2;
+    grid-row: 3;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+
+/* Blue lane */
+
+.blue-track {
+    background: #1424e8 !important;
+}
+
+
+/* =====================================
+   LEFT TRACK
+===================================== */
+
+.left-track {
+    grid-column: 1;
+    grid-row: 2;
+
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+
+/* Red lane */
+
+.red-track {
+    background: #ef2b20 !important;
+}
+
+
+/* =====================================
+   RIGHT TRACK
+===================================== */
+
+.right-track {
+    grid-column: 3;
+    grid-row: 2;
+
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+
+/* Yellow lane */
+
+.yellow-track {
+    background: #ffff42 !important;
+}
+
+
+/* =====================================
+   STARS
+===================================== */
+
+.star {
+    color: black;
+
+    font-size: 28px !important;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* =====================================
+   CENTER
+===================================== */
+
+.center {
+    position: absolute;
+
+    left: 40%;
+    top: 40%;
+
+    width: 20%;
+    height: 20%;
+
+    z-index: 10;
+
+    overflow: hidden;
+}
+
+
+/* =====================================
+   TRIANGLES
+===================================== */
+
+.triangle {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+}
+
+
+/* Red */
+
+.red-triangle {
+    left: 0;
+    top: 0;
+
+    border-width:
+        0 50% 50% 0;
+
+    border-color:
+        transparent #ef2b20 transparent transparent;
+}
+
+
+/* Green */
+
+.green-triangle {
+    right: 0;
+    top: 0;
+
+    border-width:
+        0 0 50% 50%;
+
+    border-color:
+        transparent transparent #318020 transparent;
+}
+
+
+/* Yellow */
+
+.yellow-triangle {
+    right: 0;
+    bottom: 0;
+
+    border-width:
+        50% 0 0 50%;
+
+    border-color:
+        transparent transparent transparent #ffff42;
+}
+
+
+/* Blue */
+
+.blue-triangle {
+    left: 0;
+    bottom: 0;
+
+    border-width:
+        50% 50% 0 0;
+
+    border-color:
+        #1424e8 transparent transparent transparent;
+}
+
+
+/* =====================================
+   CENTER BETTER VERSION
+===================================== */
+
+.center::before,
+.center::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 50%;
+
+    transform-origin: center;
+}
+
+
+/* =====================================
+   RESPONSIVE PIECES
+===================================== */
+
+@media (max-width: 700px) {
+
+    .ludo-board {
+        width: 95vw;
+    }
+
+    .piece {
+        width: 25px;
+        border-width: 4px;
+    }
+
+    .track > div {
+        font-size: 15px;
+    }
+
+    .star {
+        font-size: 16px !important;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .ludo-board {
+        width: 98vw;
+    }
+
+    .home-box {
+        gap: 15%;
+        padding: 10%;
+    }
+
+    .piece {
+        width: 18px;
+        border-width: 3px;
+    }
+
+    .track > div {
+        font-size: 10px;
+    }
+
+    .star {
+        font-size: 12px !important;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="ludo-board">
+
+        <!-- RED HOME -->
+        <div class="home red-home">
+            <div class="home-box">
+                <span class="piece red-piece"></span>
+                <span class="piece red-piece"></span>
+                <span class="piece red-piece"></span>
+                <span class="piece red-piece"></span>
+            </div>
+        </div>
+
+
+        <!-- GREEN HOME -->
+        <div class="home green-home">
+            <div class="home-box">
+                <span class="piece green-piece"></span>
+                <span class="piece green-piece"></span>
+                <span class="piece green-piece"></span>
+                <span class="piece green-piece"></span>
+            </div>
+        </div>
+
+
+        <!-- BLUE HOME -->
+        <div class="home blue-home">
+            <div class="home-box">
+                <span class="piece blue-piece"></span>
+                <span class="piece blue-piece"></span>
+                <span class="piece blue-piece"></span>
+                <span class="piece blue-piece"></span>
+            </div>
+        </div>
+
+
+        <!-- YELLOW HOME -->
+        <div class="home yellow-home">
+            <div class="home-box">
+                <span class="piece yellow-piece"></span>
+                <span class="piece yellow-piece"></span>
+                <span class="piece yellow-piece"></span>
+                <span class="piece yellow-piece"></span>
+            </div>
+        </div>
+
+
+        <!-- TOP TRACK -->
+        <div class="track top-track">
+
+            <div></div>
+            <div></div>
+            <div></div>
+
+            <div></div>
+            <div class="green-track"></div>
+            <div class="green-track star">★</div>
+
+            <div class="green-track star">★</div>
+            <div class="green-track"></div>
+            <div></div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+
+        </div>
+
+
+        <!-- LEFT TRACK -->
+        <div class="track left-track">
+
+            <div></div>
+            <div class="red-track star">★</div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+            <div></div>
+            <div class="red-track"></div>
+            <div class="red-track"></div>
+            <div class="red-track"></div>
+            <div class="red-track"></div>
+            <div class="red-track"></div>
+
+            <div></div>
+            <div></div>
+            <div class="red-track star">★</div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+        </div>
+
+
+        <!-- RIGHT TRACK -->
+        <div class="track right-track">
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="yellow-track star">★</div>
+            <div></div>
+            <div></div>
+
+            <div class="yellow-track"></div>
+            <div class="yellow-track"></div>
+            <div class="yellow-track"></div>
+            <div class="yellow-track"></div>
+            <div class="yellow-track"></div>
+            <div></div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="yellow-track star">★</div>
+            <div></div>
+
+        </div>
+
+
+        <!-- BOTTOM TRACK -->
+        <div class="track bottom-track">
+
+            <div></div>
+            <div class="blue-track"></div>
+            <div></div>
+
+            <div></div>
+            <div class="blue-track"></div>
+            <div></div>
+
+            <div></div>
+            <div class="blue-track"></div>
+            <div class="blue-track star">★</div>
+
+            <div class="blue-track star">★</div>
+            <div class="blue-track"></div>
+            <div></div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+
+        </div>
+
+
+        <!-- CENTER -->
+        <div class="center">
+
+            <div class="triangle red-triangle"></div>
+            <div class="triangle green-triangle"></div>
+            <div class="triangle yellow-triangle"></div>
+            <div class="triangle blue-triangle"></div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

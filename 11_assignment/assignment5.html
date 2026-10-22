@@ -1,0 +1,674 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ICC World Cup 2011 - Scorecard</title>
+
+    <style>
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #ffffff;
+
+    color: #111;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 80px 4%;
+}
+
+
+/* =========================================
+   FADED CRICKET IMAGE EFFECT
+========================================= */
+
+.page::after {
+    content: "";
+
+    position: fixed;
+
+    right: 0;
+    bottom: 0;
+
+    width: 43%;
+    height: 70%;
+
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(180, 180, 180, 0.20),
+            rgba(255, 255, 255, 0.02) 65%,
+            transparent
+        );
+
+    opacity: .8;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    position: absolute;
+
+    right: 6%;
+
+    top: 27px;
+
+    font-size: 55px;
+
+    font-weight: 900;
+
+    letter-spacing: -4px;
+
+    color: #050505;
+}
+
+.logo b {
+    color: #f04432;
+
+    font-weight: 900;
+}
+
+.logo i {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 4px;
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #ef4b37;
+
+    color: white;
+
+    font-size: 28px;
+
+    font-style: normal;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    font-size: 58px;
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    color: #050505;
+
+    text-shadow:
+        0 2px 3px rgba(0, 0, 0, .25);
+}
+
+.page-header h2 {
+    margin-top: 8px;
+
+    font-size: 28px;
+
+    color: #6b6b6b;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   SCORECARD
+========================================= */
+
+.scorecard {
+    width: 72%;
+
+    min-width: 800px;
+
+    background: rgba(255, 255, 255, .96);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, .08);
+}
+
+
+/* =========================================
+   INNINGS HEADER
+========================================= */
+
+.innings-header {
+    height: 54px;
+
+    padding: 0 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: #f34b36;
+
+    color: white;
+
+    font-size: 21px;
+}
+
+
+/* =========================================
+   TABLE ROW
+========================================= */
+
+.table-row {
+    min-height: 53px;
+
+    display: grid;
+
+    grid-template-columns:
+        26%
+        38%
+        8%
+        8%
+        8%
+        8%
+        8%;
+
+    align-items: center;
+
+    border-bottom: 1px solid #c9c9c9;
+
+    font-size: 19px;
+
+    background: rgba(255,255,255,.92);
+}
+
+
+.table-row > div {
+    padding: 0 12px;
+
+    text-align: center;
+}
+
+
+.table-row .player-column {
+    text-align: left;
+
+    padding-left: 25px;
+}
+
+
+.table-row .dismissal-column {
+    text-align: left;
+}
+
+
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.table-heading {
+    min-height: 55px;
+
+    font-size: 20px;
+
+    background: #fafafa;
+
+    color: #111;
+}
+
+
+/* =========================================
+   PLAYER NAMES
+========================================= */
+
+.player {
+    color: #3184f5;
+
+    font-weight: 400;
+
+    cursor: pointer;
+}
+
+.player:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   DISMISSAL
+========================================= */
+
+.dismissal {
+    color: #888;
+
+    font-size: 19px;
+}
+
+
+/* =========================================
+   SUMMARY ROWS
+========================================= */
+
+.summary-row {
+    font-size: 19px;
+}
+
+.summary-row .dismissal-column {
+    color: #111;
+
+    font-weight: 400;
+}
+
+.summary-row .total {
+    font-weight: 700;
+}
+
+
+/* =========================================
+   DID NOT BAT
+========================================= */
+
+.did-not-bat {
+    min-height: 50px;
+}
+
+.not-batted {
+    grid-column: 2 / 8 !important;
+
+    text-align: left !important;
+
+    color: #3184f5;
+
+    padding-left: 0 !important;
+}
+
+.not-batted a {
+    color: #3184f5;
+
+    text-decoration: none;
+}
+
+.not-batted a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+
+    .page {
+        padding: 55px 30px;
+    }
+
+    .logo {
+        right: 35px;
+
+        font-size: 42px;
+    }
+
+    .page-header h1 {
+        font-size: 46px;
+    }
+
+    .page-header h2 {
+        font-size: 24px;
+    }
+
+    .scorecard {
+        width: 90%;
+
+        min-width: 0;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .page {
+        padding: 35px 15px;
+    }
+
+    .logo {
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        margin-bottom: 30px;
+
+        font-size: 35px;
+
+        text-align: right;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .page-header h2 {
+        font-size: 19px;
+    }
+
+    .scorecard {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+    .table-row {
+        min-width: 750px;
+    }
+
+    .innings-header {
+        min-width: 750px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .page-header {
+        margin-bottom: 25px;
+    }
+
+    .page-header h1 {
+        font-size: 27px;
+    }
+
+    .page-header h2 {
+        font-size: 16px;
+    }
+
+    .logo {
+        font-size: 30px;
+    }
+
+    .logo i {
+        width: 30px;
+        height: 30px;
+
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <!-- Logo -->
+        <div class="logo">
+            <span>Cric</span><b>Pro</b>
+            <i>◉</i>
+        </div>
+
+
+        <!-- Page heading -->
+        <header class="page-header">
+            <h1>ICC WORLD CUP 2011</h1>
+            <h2>India Vs SriLanka ScoreCard</h2>
+        </header>
+
+
+        <!-- Scorecard -->
+        <section class="scorecard">
+
+            <!-- Innings header -->
+            <div class="innings-header">
+                <strong>India Innings</strong>
+                <strong>277- 4 (48.2)</strong>
+            </div>
+
+
+            <!-- Table header -->
+            <div class="table-row table-heading">
+
+                <div class="player-column">
+                    Batsman
+                </div>
+
+                <div class="dismissal-column"></div>
+
+                <div>R</div>
+                <div>B</div>
+                <div>4s</div>
+                <div>6s</div>
+                <div>SR</div>
+
+            </div>
+
+
+            <!-- Virender Sehwag -->
+            <div class="table-row">
+
+                <div class="player-column player">
+                    Virender Sehwag
+                </div>
+
+                <div class="dismissal-column dismissal">
+                    lbw b L Malinga
+                </div>
+
+                <div>0</div>
+                <div>2</div>
+                <div>0</div>
+                <div>0</div>
+                <div>0.00</div>
+
+            </div>
+
+
+            <!-- Sachin Tendulkar -->
+            <div class="table-row">
+
+                <div class="player-column player">
+                    Sachin Tendulkar
+                </div>
+
+                <div class="dismissal-column dismissal">
+                    c K Sangakkara b L Malinga
+                </div>
+
+                <div>18</div>
+                <div>14</div>
+                <div>2</div>
+                <div>0</div>
+                <div>128.57</div>
+
+            </div>
+
+
+            <!-- Gautam Gambhir -->
+            <div class="table-row">
+
+                <div class="player-column player">
+                    Gautam Gambhir
+                </div>
+
+                <div class="dismissal-column dismissal">
+                    b T Perera
+                </div>
+
+                <div>97</div>
+                <div>122</div>
+                <div>9</div>
+                <div>0</div>
+                <div>79.51</div>
+
+            </div>
+
+
+            <!-- Virat Kohli -->
+            <div class="table-row">
+
+                <div class="player-column player">
+                    Virat Kohli
+                </div>
+
+                <div class="dismissal-column dismissal">
+                    c &amp; b T Dilshan
+                </div>
+
+                <div>35</div>
+                <div>49</div>
+                <div>4</div>
+                <div>0</div>
+                <div>71.43</div>
+
+            </div>
+
+
+            <!-- MS Dhoni -->
+            <div class="table-row">
+
+                <div class="player-column player">
+                    MS Dhoni (c &amp; wk)
+                </div>
+
+                <div class="dismissal-column dismissal">
+                    not out
+                </div>
+
+                <div>91</div>
+                <div>79</div>
+                <div>8</div>
+                <div>2</div>
+                <div>115.19</div>
+
+            </div>
+
+
+            <!-- Yuvraj Singh -->
+            <div class="table-row">
+
+                <div class="player-column player">
+                    Yuvraj Singh
+                </div>
+
+                <div class="dismissal-column dismissal">
+                    not out
+                </div>
+
+                <div>21</div>
+                <div>24</div>
+                <div>2</div>
+                <div>0</div>
+                <div>87.50</div>
+
+            </div>
+
+
+            <!-- Extras -->
+            <div class="table-row summary-row">
+
+                <div class="player-column">
+                    Extras
+                </div>
+
+                <div class="dismissal-column">
+                    15 (b 1, lb 6, w 8, nb 0, p 0)
+                </div>
+
+                <div class="empty"></div>
+                <div class="empty"></div>
+                <div class="empty"></div>
+                <div class="empty"></div>
+                <div class="empty"></div>
+
+            </div>
+
+
+            <!-- Total -->
+            <div class="table-row summary-row">
+
+                <div class="player-column">
+                    Total
+                </div>
+
+                <div class="dismissal-column total">
+                    277 (4 wkts, 48.2 Ov)
+                </div>
+
+                <div class="empty"></div>
+                <div class="empty"></div>
+                <div class="empty"></div>
+                <div class="empty"></div>
+                <div class="empty"></div>
+
+            </div>
+
+
+            <!-- Did not bat -->
+            <div class="table-row did-not-bat">
+
+                <div class="player-column">
+                    Did not bat
+                </div>
+
+                <div class="not-batted">
+                    <a href="#">Suresh Raina</a>,
+                    <a href="#">Harbhajan Singh</a>,
+                    <a href="#">Zaheer Khan</a>,
+                    <a href="#">Munaf Patel</a>,
+                    <a href="#">S Sreesanth</a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+</html>
+```

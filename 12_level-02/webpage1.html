@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidz World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #222222;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .cart-info {
+            font-size: 12px;
+            color: #333333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .cart-icon {
+            width: 14px;
+            height: 14px;
+            object-fit: contain;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/kw-background.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 40px 80px 0 80px;
+            color: #ffffff;
+            position: relative;
+            min-height: 280px;
+        }
+
+        .hero-content h1 {
+            font-size: 42px;
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .hero-tag {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-image img {
+            max-height: 250px;
+            object-fit: contain;
+        }
+
+        /* Main Container Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Section Headings */
+        .product-section {
+            margin-bottom: 45px;
+        }
+
+        .product-section h2 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: #111111;
+        }
+
+        /* Grid Layouts */
+        .product-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .books-grid {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .games-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .handmade-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        /* Product Card Styling */
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Game section specific background styling */
+        .game-card {
+            background-color: #fffde6;
+            border-color: #faeab9;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #111111;
+            margin-bottom: 2px;
+        }
+
+        .product-author, 
+        .product-desc {
+            font-size: 10.5px;
+            color: #666666;
+            margin-bottom: 10px;
+        }
+
+        /* Card Footer */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .price {
+            font-size: 12px;
+            font-weight: bold;
+            color: #111111;
+        }
+
+        .add-btn {
+            background-color: #3b82f6;
+            color: #ffffff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .add-btn img {
+            width: 10px;
+            height: 10px;
+            object-fit: contain;
+            margin: 0;
+        }
+
+        .add-btn:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">KIDZ WORLD</div>
+        <div class="cart-info">
+            <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon.png" alt="Cart" class="cart-icon"> 
+            Cart items [0]
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Shop.<br>Have Fun.<br>Repeat.</h1>
+            <p class="hero-tag">#NewAndNow</p>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+
+        <!-- Section 1: Discover New Books -->
+        <section class="product-section">
+            <h2>Discover New Books</h2>
+            <div class="product-grid books-grid">
+                <!-- Book 1 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/book1.png" alt="This was our pact">
+                    <h3 class="product-title">This was our pact</h3>
+                    <p class="product-author">Ryan Andrews</p>
+                    <div class="card-footer">
+                        <span class="price">$7.49</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Book 2 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/book2.png" alt="The famous five">
+                    <h3 class="product-title">The famous five</h3>
+                    <p class="product-author">Enid Blyton</p>
+                    <div class="card-footer">
+                        <span class="price">$4.59</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Book 3 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/book3.png" alt="Matilda">
+                    <h3 class="product-title">Matilda</h3>
+                    <p class="product-author">Roald Dahl</p>
+                    <div class="card-footer">
+                        <span class="price">$6.80</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Book 4 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/book4.png" alt="Harry Potter">
+                    <h3 class="product-title">Harry Potter</h3>
+                    <p class="product-author">J.K. Rowling</p>
+                    <div class="card-footer">
+                        <span class="price">$10</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Book 5 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/book5.png" alt="For Young Readers">
+                    <h3 class="product-title">For Young Readers</h3>
+                    <p class="product-author">Ruskin Bond</p>
+                    <div class="card-footer">
+                        <span class="price">$7.29</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Book 6 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/book6.png" alt="Wimpy Kid - DIY">
+                    <h3 class="product-title">Wimpy Kid - DIY</h3>
+                    <p class="product-author">Jeff Kinney</p>
+                    <div class="card-footer">
+                        <span class="price">$4.99</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Discover New Games -->
+        <section class="product-section">
+            <h2>Discover New Games</h2>
+            <div class="product-grid games-grid">
+                <!-- Game 1 -->
+                <div class="product-card game-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/dart-board.png" alt="Dart Board">
+                    <h3 class="product-title">Dart Board</h3>
+                    <p class="product-desc">Wooden board, 16 inches</p>
+                    <div class="card-footer">
+                        <span class="price">$17.49</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Game 2 -->
+                <div class="product-card game-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/connect-four.png" alt="Connect 4">
+                    <h3 class="product-title">Connect 4</h3>
+                    <p class="product-desc">Board game, multiplayer</p>
+                    <div class="card-footer">
+                        <span class="price">$19.99</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Game 3 -->
+                <div class="product-card game-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/jenga.png" alt="Jenga">
+                    <h3 class="product-title">Jenga</h3>
+                    <p class="product-desc">Wooden blocks, 54 pieces</p>
+                    <div class="card-footer">
+                        <span class="price">$20.99</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Game 4 -->
+                <div class="product-card game-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/monopoly.png" alt="Monopoly">
+                    <h3 class="product-title">Monopoly</h3>
+                    <p class="product-desc">1.61 x 15.75 x 10.51 inches</p>
+                    <div class="card-footer">
+                        <span class="price">$19.49</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Handmade with love -->
+        <section class="product-section">
+            <h2>Handmade with love</h2>
+            <div class="product-grid handmade-grid">
+                <!-- Item 1 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/bookmarks.png" alt="Bookmarks">
+                    <h3 class="product-title">Bookmarks</h3>
+                    <p class="product-desc">Handmade with love</p>
+                    <div class="card-footer">
+                        <span class="price">$12.49</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/birthday-card.png" alt="Birthday card">
+                    <h3 class="product-title">Birthday card</h3>
+                    <p class="product-desc">Handmade with love</p>
+                    <div class="card-footer">
+                        <span class="price">$19.99</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/stuffed-toy.png" alt="Stuffed toys">
+                    <h3 class="product-title">Stuffed toys</h3>
+                    <p class="product-desc">Handmade with love</p>
+                    <div class="card-footer">
+                        <span class="price">$15.99</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/dream-catcher.png" alt="Dream catcher drawing">
+                    <h3 class="product-title">Dream catcher drawing</h3>
+                    <p class="product-desc">Handmade with love</p>
+                    <div class="card-footer">
+                        <span class="price">$18.49</span>
+                        <button class="add-btn">Add <img src="https://raw.githubusercontent.com/codinggita/CGxSU_Semester_1/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/07.kidz-world/assets/cart-icon-white.png" alt="cart"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
